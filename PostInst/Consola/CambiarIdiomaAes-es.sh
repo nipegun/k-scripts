@@ -5,15 +5,19 @@
 # Si se te llena la boca hablando de libertad entonces hazlo realmente libre.
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
-#------------------------------------------------
-#  Script de NiPeGun para poner Kali en español
-#------------------------------------------------
+# ----------
+# Script de NiPeGun para poner Kali en español
+#
+# Ejecución remota:
+# curl -s https://raw.githubusercontent.com/nipegun/k-scripts/main/PostInst/Consola/CambiarIdiomaAes-es.sh | bash
+# ----------
 
 # Poner que sólo se genere el español de España cuando se creen locales
 echo "es_ES.UTF-8 UTF-8" > /etc/locale.gen
 
 # Compilar los locales borrando primero los existentes
 # y dejando nada más que el español de España
+apt-get -y update && apt-get -y install locales
 locale-gen --purge es_ES.UTF-8
 
 # Modificar el archivo /etc/default/locale reflejando los cambios
