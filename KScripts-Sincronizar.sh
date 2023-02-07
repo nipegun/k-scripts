@@ -5,25 +5,27 @@
 # Si se te llena la boca hablando de libertad entonces hazlo realmente libre.
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
-#----------------------------------------------------
-#  Script de NiPeGun para sincronizar los k-scripts
-#----------------------------------------------------
+# ----------
+# Script de NiPeGun para sincronizar los k-scripts
+#
+# Ejecución remota:
+# curl -s https://raw.githubusercontent.com/nipegun/k-scripts/main/KScripts-Sincronizar.sh | bash
+# ----------
 
 ColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
 FinColor='\033[0m'
 
 # Comprobar si el paquete wget está instalado. Si no lo está, instalarlo.
-if [[ $(dpkg-query -s wget 2>/dev/null | grep installed) == "" ]]; then
+  if [[ $(dpkg-query -s wget 2>/dev/null | grep installed) == "" ]]; then
     echo ""
     echo "wget no está instalado. Iniciando su instalación..."
     echo ""
-    apt-get -y update
-    apt-get -y install wget
-fi
+    sudo apt-get -y update && sudo apt-get -y install wget
+  fi
 
-# Comprobar si hay conexión a Internet antes de sincronizar los k-scripts
-wget -q --tries=10 --timeout=20 --spider https://github.com
+# Comprobar si hay conexión a Internet antes de sincronizar los d-scripts
+  wget -q --tries=10 --timeout=20 --spider https://github.com
   if [[ $? -eq 0 ]]; then
     echo ""
     echo "---------------------------------------------------------"
@@ -31,15 +33,22 @@ wget -q --tries=10 --timeout=20 --spider https://github.com
     echo -e "  ${ColorVerde} y descargando nuevos k-scripts si es que existen...${FinColor}"
     echo "---------------------------------------------------------"
     echo ""
-    rm /root/scripts/k-scripts -R 2> /dev/null
-    mkdir /root/scripts 2> /dev/null
-    cd /root/scripts
+    rm ~/scripts/k-scripts -R 2> /dev/null
+    mkdir ~/scripts 2> /dev/null
+    cd ~/scripts
+    # Comprobar si el paquete git está instalado. Si no lo está, instalarlo.
+    if [[ $(dpkg-query -s git 2>/dev/null | grep installed) == "" ]]; then
+      echo ""
+      echo "git no está instalado. Iniciando su instalación..."
+      echo ""
+      sudo apt-get -y update && sudo apt-get -y install git
+    fi
     git clone --depth=1 https://github.com/nipegun/k-scripts
-    mkdir -p /root/scripts/k-scripts/Alias/
-    rm /root/scripts/k-scripts/.git -R 2> /dev/null
-    find /root/scripts/k-scripts/ -type f -iname "*.sh" -exec chmod +x {} \;
-    /root/scripts/k-scripts/KScripts-CrearAlias.sh
-    find /root/scripts/k-scripts/Alias -type f -exec chmod +x {} \;
+    mkdir -p ~/scripts/k-scripts/Alias/
+    rm ~/scripts/k-scripts/.git -Rf 2> /dev/null
+    find ~/scripts/k-scripts/ -type f -iname "*.sh" -exec chmod +x {} \;
+    ~/scripts/k-scripts/KScripts-CrearAlias.sh
+    find ~/scripts/k-scripts/Alias -type f -exec chmod +x {} \;
     
     echo ""
     echo "-----------------------------------------"
@@ -49,7 +58,8 @@ wget -q --tries=10 --timeout=20 --spider https://github.com
   else
     echo ""
     echo "---------------------------------------------------------------------------------------------------"
-    echo -e "${ColorRojo}No se pudo iniciar la sincronización de los k-scripts porque no se detectó conexión a Internet.${FinColor}"
+    echo -e "${ColorRojo}  No se pudo iniciar la sincronización de los u-scripts porque no se detectó conexión a Internet.${FinColor}"
     echo "---------------------------------------------------------------------------------------------------"
     echo ""
   fi
+
