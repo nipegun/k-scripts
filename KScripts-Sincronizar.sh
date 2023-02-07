@@ -58,7 +58,7 @@ FinColor='\033[0m'
   else
     echo ""
     echo "---------------------------------------------------------------------------------------------------"
-    echo -e "${ColorRojo}  No se pudo iniciar la sincronización de los u-scripts porque no se detectó conexión a Internet.${FinColor}"
+    echo -e "${ColorRojo}  No se pudo iniciar la sincronización de los k-scripts porque no se detectó conexión a Internet.${FinColor}"
     echo "---------------------------------------------------------------------------------------------------"
     echo ""
   fi
