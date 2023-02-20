@@ -12,9 +12,11 @@
 # curl -s https://raw.githubusercontent.com/nipegun/k-scripts/main/KScripts-Sincronizar.sh | bash
 # ----------
 
-ColorRojo='\033[1;31m'
-ColorVerde='\033[1;32m'
-FinColor='\033[0m'
+vColorAzul="\033[0;34m"
+vColorAzulClaro="\033[1;34m"
+vColorVerde='\033[1;32m'
+vColorRojo='\033[1;31m'
+vFinColor='\033[0m'
 
 # Comprobar si el paquete wget está instalado. Si no lo está, instalarlo.
   if [[ $(dpkg-query -s wget 2>/dev/null | grep installed) == "" ]]; then
@@ -28,10 +30,7 @@ FinColor='\033[0m'
   wget -q --tries=10 --timeout=20 --spider https://github.com
   if [[ $? -eq 0 ]]; then
     echo ""
-    echo "---------------------------------------------------------"
-    echo -e "  ${ColorVerde}Sincronizando los k-scripts con las últimas versiones${FinColor}"
-    echo -e "  ${ColorVerde} y descargando nuevos k-scripts si es que existen...${FinColor}"
-    echo "---------------------------------------------------------"
+    echo -e "${vColorAzulClaro}  Sincronizando los k-scripts con las últimas versiones y descargando nuevos d-scripts (si es que existen)...${vFinColor}"
     echo ""
     rm ~/scripts/k-scripts -R 2> /dev/null
     mkdir ~/scripts 2> /dev/null
@@ -51,15 +50,11 @@ FinColor='\033[0m'
     find ~/scripts/k-scripts/Alias -type f -exec chmod +x {} \;
     
     echo ""
-    echo "-----------------------------------------"
-    echo -e "  ${ColorVerde}k-scripts sincronizados correctamente${FinColor}"
-    echo "-----------------------------------------"
+    echo -e "${vColorVerde}    k-scripts sincronizados correctamente.${vFinColor}"
     echo ""
   else
     echo ""
-    echo "---------------------------------------------------------------------------------------------------"
-    echo -e "${ColorRojo}  No se pudo iniciar la sincronización de los k-scripts porque no se detectó conexión a Internet.${FinColor}"
-    echo "---------------------------------------------------------------------------------------------------"
+    echo -e "${vColorRojo}  No se pudo iniciar la sincronización de los k-scripts porque no se detectó conexión a Internet.${vFinColor}"
     echo ""
   fi
 
