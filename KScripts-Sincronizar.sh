@@ -23,32 +23,33 @@ vFinColor='\033[0m'
     echo ""
     echo "wget no está instalado. Iniciando su instalación..."
     echo ""
-    sudo apt-get -y update && sudo apt-get -y install wget
+    sudo apt-get -y update
+    sudo apt-get -y install wget
   fi
 
 # Comprobar si hay conexión a Internet antes de sincronizar los d-scripts
   wget -q --tries=10 --timeout=20 --spider https://github.com
   if [[ $? -eq 0 ]]; then
     echo ""
-    echo -e "${vColorAzulClaro}  Sincronizando los k-scripts con las últimas versiones y descargando nuevos d-scripts (si es que existen)...${vFinColor}"
+    echo -e "${vColorAzulClaro}  Sincronizando los k-scripts con las últimas versiones y descargando nuevos k-scripts (si es que existen)...${vFinColor}"
     echo ""
     rm ~/scripts/k-scripts -R 2> /dev/null
     mkdir ~/scripts 2> /dev/null
     cd ~/scripts
     # Comprobar si el paquete git está instalado. Si no lo está, instalarlo.
-    if [[ $(dpkg-query -s git 2>/dev/null | grep installed) == "" ]]; then
-      echo ""
-      echo "git no está instalado. Iniciando su instalación..."
-      echo ""
-      sudo apt-get -y update && sudo apt-get -y install git
-    fi
+      if [[ $(dpkg-query -s git 2>/dev/null | grep installed) == "" ]]; then
+        echo ""
+        echo -e "${vColorRojo}    El paquete git no está instalado. Iniciando su instalación...${vFinColor}"
+        echo ""
+        sudo apt-get -y update
+        sudo apt-get -y install git
+      fi
     git clone --depth=1 https://github.com/nipegun/k-scripts
     mkdir -p ~/scripts/k-scripts/Alias/
     rm ~/scripts/k-scripts/.git -Rf 2> /dev/null
     find ~/scripts/k-scripts/ -type f -iname "*.sh" -exec chmod +x {} \;
     ~/scripts/k-scripts/KScripts-CrearAlias.sh
     find ~/scripts/k-scripts/Alias -type f -exec chmod +x {} \;
-    
     echo ""
     echo -e "${vColorVerde}    k-scripts sincronizados correctamente.${vFinColor}"
     echo ""
