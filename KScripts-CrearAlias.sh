@@ -22,7 +22,7 @@ ln -s ~/scripts/k-scripts/SistemaOperativo-ActualizarYReiniciar.sh  ~/scripts/k-
 ln -s ~/scripts/k-scripts/SistemaOperativo-Apagar.sh                ~/scripts/k-scripts/Alias/apso
 ln -s ~/scripts/k-scripts/SistemaOperativo-Reiniciar.sh             ~/scripts/k-scripts/Alias/rso
 
-ln -s ~/scripts/k-scripts/UScripts-Sincronizar.sh                    ~/scripts/k-scripts/Alias/sinus
+ln -s ~/scripts/k-scripts/KScripts-Sincronizar.sh                    ~/scripts/k-scripts/Alias/sikus
 
 echo ""
 echo -e "${ColorVerde}Alias creados. Deberías poder ejecutar los k-scripts escribiendo el nombre de su alias.${FinColor}"
