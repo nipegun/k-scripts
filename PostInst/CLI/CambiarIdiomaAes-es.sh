@@ -9,7 +9,7 @@
 # Script de NiPeGun para poner Kali en español
 #
 # Ejecución remota (puede requerir permisos sudo):
-#   curl -s https://raw.githubusercontent.com/nipegun/k-scripts/main/PostInst/Consola/CambiarIdiomaAes-es.sh | bash
+#   curl -sL https://raw.githubusercontent.com/nipegun/k-scripts/refs/heads/main/PostInst/CLI/CambiarIdiomaAes-es.sh | bash
 # ----------
 
 # Poner que sólo se genere el español de España cuando se creen locales
