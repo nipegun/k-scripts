@@ -19,6 +19,7 @@
   sudo apt-get -y update
   sudo apt-get -y install locales
   sudo locale-gen --purge es_ES.UTF-8
+  sudo update-locale LANG=es_ES.UTF-8
 
 # Modificar el archivo /etc/default/locale reflejando los cambios
   echo 'LANG="es_ES.UTF-8"'  | sudo tee    /etc/default/locale
