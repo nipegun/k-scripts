@@ -6,8 +6,8 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # Actualizar lista de paquetes
-apt-get -y update
+  sudo apt-get -y update
 
 # Instalación de paquetes
-apt-get -y install firefox-esr-l10n-es-es
+  sudo apt-get -y install firefox-esr-l10n-es-es
 
