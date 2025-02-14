@@ -8,26 +8,24 @@
 # ----------
 # Script de NiPeGun para poner Kali en español
 #
-# Ejecución remota:
-# curl -s https://raw.githubusercontent.com/nipegun/k-scripts/main/PostInst/Consola/CambiarIdiomaAes-es.sh | bash
+# Ejecución remota (puede requerir permisos sudo):
+#   curl -s https://raw.githubusercontent.com/nipegun/k-scripts/main/PostInst/Consola/CambiarIdiomaAes-es.sh | bash
 # ----------
 
 # Poner que sólo se genere el español de España cuando se creen locales
-echo "es_ES.UTF-8 UTF-8" > /etc/locale.gen
+  echo "es_ES.UTF-8 UTF-8" | sudo tee /etc/locale.gen
 
-# Compilar los locales borrando primero los existentes
-# y dejando nada más que el español de España
-apt-get -y update && apt-get -y install locales
-locale-gen --purge es_ES.UTF-8
+# Compilar los locales borrando primero los existentes y dejando nada más que el español de España
+  sudo apt-get -y update
+  sudo apt-get -y install locales
+  sudo locale-gen --purge es_ES.UTF-8
 
 # Modificar el archivo /etc/default/locale reflejando los cambios
-echo 'LANG="es_ES.UTF-8"' > /etc/default/locale
-echo 'LANGUAGE="es_ES:es"' >> /etc/default/locale
+  echo 'LANG="es_ES.UTF-8"'  | sudo tee    /etc/default/locale
+  echo 'LANGUAGE="es_ES:es"' | sudo tee -a /etc/default/locale
 
-echo ""
-echo "------------------------------------------------------------------------------"
-echo "  Cambios realizados."
-echo "  Cierra la sesión o reinicia el sistema para que los cambios surjan efecto."
-echo "------------------------------------------------------------------------------"
-echo ""
+# Notificar fin de ejecución del script
+  echo ""
+  echo "  Cambios realizados. Cierra la sesión o reinicia el sistema para que los cambios surjan efecto."
+  echo ""
 
